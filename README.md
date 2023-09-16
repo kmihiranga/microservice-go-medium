@@ -4,5 +4,6 @@
 
 * inside the docker-service run below command
 
-```make up_build
-
+```bash
+  make up_build
+```
