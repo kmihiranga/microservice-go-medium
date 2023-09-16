@@ -19,7 +19,7 @@ func Parse() *Config {
 // parse application configurations
 func parseAppConfig() *AppConfig {
 	configFile := CheckEnvironment("app")
-	content := readFile(configFile, "app")
+	content := readFile(configFile)
 
 	cfg := &AppConfig{}
 
@@ -34,7 +34,7 @@ func parseAppConfig() *AppConfig {
 // parse db configurations
 func parseDBConfigs() *DBConfig {
 	configFile := CheckEnvironment("db")
-	content := readFile(configFile, "db")
+	content := readFile(configFile)
 
 	cfg := &DBConfig{}
 
@@ -47,13 +47,13 @@ func parseDBConfigs() *DBConfig {
 }
 
 // read file from a disk
-func readFile(fileName string, folderName string) *[]byte {
+func readFile(fileName string) *[]byte {
 	// identify current file directory
 	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 	if err != nil {
 		panic(err)
 	}
-	content, err := os.ReadFile(dir + "/ops/" + folderName + "/" + fileName)
+	content, err := os.ReadFile(dir + "/ops/" + fileName)
 	if err != nil {
 		panic(fmt.Sprintf("error: %v", err))
 	}

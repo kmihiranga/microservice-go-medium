@@ -31,7 +31,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: authentication-service
     volumes:
-      - ./db-data/postgres/: /var/lib/postgresql/db
+      - ./db-data/postgres/:/var/lib/postgresql/db
     networks:
       - go-microservice-medium
 
