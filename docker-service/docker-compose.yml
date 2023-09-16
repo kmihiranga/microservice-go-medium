@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  authentication-service:
+    container_name: authentication-service
+    build: 
+      context: ./../authentication-service
+      dockerfile: ./../authentication-service/authentication-service.dockerfile
+    restart: always
+    ports:
+      - "8081:8081"
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      ENV: "development"
+    networks:
+      - go-microservice-medium
+  
+  postgres:
+    container_name: postgres
+    image: 'postgres:14.0'
+    ports:
+      - "5432:5432"
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: authentication-service
+    volumes:
+      - ./db-data/postgres/: /var/lib/postgresql/db
+    networks:
+      - go-microservice-medium
+
+networks:
+  go-microservice-medium:
+    driver: bridge
