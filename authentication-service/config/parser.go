@@ -49,13 +49,11 @@ func CheckEnvironment(folderName string) string {
 	env := os.Getenv("ENV")
 
 	switch env {
-	case "development":
-		return folderName + "/config-dev.yaml"
 	case "staging":
 		return folderName + "/config-staging.yaml"
 	case "production":
 		return folderName + "/config-production.yaml"
 	default:
-		return ""
+		return folderName + "/config-dev.yaml"
 	}
 }
