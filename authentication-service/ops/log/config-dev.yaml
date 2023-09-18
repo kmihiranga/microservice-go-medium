@@ -1,0 +1,8 @@
+level: info
+encoding: console
+encorderConfig:
+  messageKey: "message"
+  levelKey: "level"
+  levelEncoder: "lowercase"
+  timeKey: "time"
+  timeEncoder: "ISO8601"

@@ -5,8 +5,10 @@ go 1.21.1
 require gopkg.in/yaml.v2 v2.4.0
 
 require (
-	github.com/kr/text v0.1.0 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
+	go.uber.org/multierr v1.11.0 // indirect
+	go.uber.org/zap v1.26.0 // indirect
 )
 
 require (

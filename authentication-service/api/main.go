@@ -4,11 +4,11 @@ import (
 	"authentication-service/api/handler"
 	"authentication-service/config"
 	"authentication-service/infrastructure/repository"
+	logger "authentication-service/pkg/log"
 	"authentication-service/usecase/user"
 	"context"
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"os/signal"
@@ -17,11 +17,16 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/jackc/pgx/v5"
+	"go.uber.org/zap"
 
 	gorillaCtx "github.com/gorilla/context"
 )
 
+var log *zap.SugaredLogger = logger.GetLogger().Sugar()
+
 func main() {
+	defer log.Sync()
+	
 	// db configs
 	config := config.Parse()
 	ctx := context.Background()
@@ -81,7 +86,7 @@ func main() {
 		log.Fatalf("Server shutdown failed. %v", err)
 	}
 
-	log.Println("Server shutdown completed")
+	log.Info("Server shutdown completed.")
 	os.Exit(0)
 
 }
